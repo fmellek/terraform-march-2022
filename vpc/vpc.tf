@@ -39,3 +39,10 @@ resource "aws_subnet" "public_3" {
       Name = var.tagging_subnets[2]
     }
 }
+
+resource "aws_route_table" "public_route_table" {
+    vpc_id = aws_vpc.my_custom_vpc.id
+    tags = {
+      Name = var.tagging_route_table
+    }
+}

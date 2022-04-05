@@ -32,3 +32,9 @@ variable "tagging_subnets" {
     description = "This variable represent the name of the each subnet"
     default = [ "public-subnet-a", "public-subnet-b", "public-subnet-c" ]
   }
+
+  variable "tagging_route_table" {
+      type = string
+      description = "This variable represent the name of the Route Table."
+      default = "Public-Route-Table"
+        }
