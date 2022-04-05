@@ -3,6 +3,7 @@ resource "aws_instance" "my_ec2" {        # if you're using "_" always use "_"
   instance_type = var.instance_type
   tags = {
     Name = "${var.env}-app-instance" 
+    Name2 = format("%s-app-instance", var.env)
   }
   vpc_security_group_ids = [aws_security_group.my_sg.id]
 } 
