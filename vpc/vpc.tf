@@ -18,6 +18,6 @@ resource "aws_subnet" "public_1" {
     availability_zone = var.az_name[0]
     cidr_block = var.cidr_block[1]
     tags = {
-      Name = var.tagging_subnets[1]
+      Name = var.tagging_subnets[0]
     }
 }
