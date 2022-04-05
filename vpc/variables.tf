@@ -45,7 +45,7 @@ variable "destination_cidr_public" {
     default = "0.0.0.0/0"
 }
 
-variable "tagging_subnets-private" {
+variable "tagging_subnets_private" {
     type = list
     description = "This variable represent the name of the each subnet under private"
     default = [ "private-subnet-a", "private-subnet-b", "private-subnet-c" ]
