@@ -34,9 +34,9 @@ variable "tagging_subnets" {
   }
 
   variable "tagging_route_table" {
-      type = string
+      type = list
       description = "This variable represent the name of the Route Table."
-      default = "Public-Route-Table"
+      default = [ "Public-Route-Table", "Private-Route-Table" ]
         }
 
 variable "destination_cidr_public" {

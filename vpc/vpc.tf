@@ -43,7 +43,7 @@ resource "aws_subnet" "public_3" {
 resource "aws_route_table" "public_route_table" {
     vpc_id = aws_vpc.my_custom_vpc.id
     tags = {
-      Name = var.tagging_route_table
+      Name = var.tagging_route_table[0]
     }
 }
 
@@ -68,3 +68,10 @@ resource "aws_route" "ingress_route" {
     gateway_id = aws_internet_gateway.internet-gw.id
 
   }
+
+  resource "aws_route_table" "private_route_table" {
+    vpc_id = aws_vpc.my_custom_vpc.id
+    tags = {
+      Name = var.tagging_route_table[1]
+    }
+}
