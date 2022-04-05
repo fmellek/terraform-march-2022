@@ -18,7 +18,7 @@ resource "aws_subnet" "public_1" {
     availability_zone = var.az_name[0]
     cidr_block = var.cidr_block[1]
     tags = {
-      Name = var.tagging_subnets[0]
+      Name = var.tagging_subnets_public[0]
     }
 }
 
@@ -27,7 +27,7 @@ resource "aws_subnet" "public_2" {
     availability_zone = var.az_name[1]
     cidr_block = var.cidr_block[2]
     tags = {
-      Name = var.tagging_subnets[1]
+      Name = var.tagging_subnets_public[1]
     }
 }
 
@@ -36,7 +36,7 @@ resource "aws_subnet" "public_3" {
     availability_zone = var.az_name[2]
     cidr_block = var.cidr_block[3]
     tags = {
-      Name = var.tagging_subnets[2]
+      Name = var.tagging_subnets_public[2]
     }
 }
 
@@ -73,5 +73,32 @@ resource "aws_route" "ingress_route" {
     vpc_id = aws_vpc.my_custom_vpc.id
     tags = {
       Name = var.tagging_route_table[1]
+    }
+}
+
+resource "aws_subnet" "private_1" {
+    vpc_id = aws_vpc.my_custom_vpc.id
+    availability_zone = var.az_name[0]
+    cidr_block = var.cidr_block[4]
+    tags = {
+      Name = var.tagging_subnets_private[0]
+    }
+}
+
+resource "aws_subnet" "private_2" {
+    vpc_id = aws_vpc.my_custom_vpc.id
+    availability_zone = var.az_name[1]
+    cidr_block = var.cidr_block[5]
+    tags = {
+      Name = var.tagging_subnets_private[1]
+    }
+}
+
+resource "aws_subnet" "private_3" {
+    vpc_id = aws_vpc.my_custom_vpc.id
+    availability_zone = var.az_name[2]
+    cidr_block = var.cidr_block[6]
+    tags = {
+      Name = var.tagging_subnets_private[2]
     }
 }
