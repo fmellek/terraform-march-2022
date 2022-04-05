@@ -12,4 +12,4 @@ data "aws_ami" "amazon_linux_2" {
     values = ["x86_64"]
   }
 }
-# Fetch the from an existing resource, data can be any attribute that resource
+# Fetch the data from an existing resource, data can be any attribute that resource
