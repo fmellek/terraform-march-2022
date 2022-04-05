@@ -3,5 +3,5 @@ resource "aws_vpc" "my_custom_vpc" {
         Name = var.tag
     }
     cidr_block = var.cidr_block
-    tenancy = var.tenancy
+    instance_tenancy = var.tenancy
 }
