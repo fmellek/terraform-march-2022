@@ -4,6 +4,12 @@ variable "tag" {
     default = "my_custom_vpc"
 }
 
+variable "igw-tag" {
+    type = string
+    description = "This variable represenet the name of the internet gateway"
+    default = "Public-Route-Table"
+}
+
 variable "cidr_block" {
     type = string
     description = "This variable represent the range of the IP"
