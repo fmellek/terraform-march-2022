@@ -46,3 +46,18 @@ resource "aws_route_table" "public_route_table" {
       Name = var.tagging_route_table
     }
 }
+
+resource "aws_route_table_association" "first" {
+    subnet_id = aws_subnet.public_1.id
+    route_table_id = aws_route_table.public_route_table.id
+}
+
+resource "aws_route_table_association" "second" {
+    subnet_id = aws_subnet.public_2.id
+    route_table_id = aws_route_table.public_route_table.id
+}
+
+resource "aws_route_table_association" "third" {
+    subnet_id = aws_subnet.public_3.id
+    route_table_id = aws_route_table.public_route_table.id
+}
