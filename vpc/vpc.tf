@@ -22,7 +22,7 @@ resource "aws_subnet" "public_1" {
     }
 }
 
-resource "aws_subnet" "public_1" {
+resource "aws_subnet" "public_2" {
     vpc_id = aws_vpc.my_custom_vpc.id
     availability_zone = var.az_name[1]
     cidr_block = var.cidr_block[2]
@@ -31,7 +31,7 @@ resource "aws_subnet" "public_1" {
     }
 }
 
-resource "aws_subnet" "public_1" {
+resource "aws_subnet" "public_3" {
     vpc_id = aws_vpc.my_custom_vpc.id
     availability_zone = var.az_name[2]
     cidr_block = var.cidr_block[3]
