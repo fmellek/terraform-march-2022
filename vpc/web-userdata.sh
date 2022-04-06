@@ -18,3 +18,4 @@ mkdir phpMyAdmin && tar -xvzf phpMyAdmin-latest-all-languages.tar.gz -C phpMyAdm
 rm phpMyAdmin-latest-all-languages.tar.gz
 wget https://wordpress.org/latest.tar.gz
 tar -xzf latest.tar.gz
+sudo echo 'Hello'
