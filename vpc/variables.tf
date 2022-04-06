@@ -51,3 +51,10 @@ variable "tagging_subnets_private" {
     default = [ "private-subnet-a", "private-subnet-b", "private-subnet-c" ]
   }
 
+  variable "tagging_nat_gateway" {
+      type = string
+      description = "This variable represenet the name of the public nat-gateway"
+      default = "public-nat-gateway"
+    
+  }
+

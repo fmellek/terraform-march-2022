@@ -122,3 +122,12 @@ resource "aws_route_table_association" "third_private" {
  resource "aws_eip" "nat" {
      depends_on = [aws_internet_gateway.internet-gw]
  } 
+
+ resource "aws_nat_gateway" "nat_gateway" {
+   allocation_id = aws_eip.nat.id
+   subnet_id = aws_subnet.public_1.id
+   tags = {
+     Name = var.tagging_nat_gateway
+   }
+   
+ }
