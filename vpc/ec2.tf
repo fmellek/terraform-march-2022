@@ -7,7 +7,7 @@ resource "aws_instance" "my_ec2" {
       Project = "VPC"
     }
     subnet_id = aws_subnet.public_1.id
-    key_name = "Terraform-Server-Key"
+    key_name = var.key_name
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.my_sg.id]
     user_data = file("web-userdata.sh")
@@ -23,7 +23,7 @@ resource "aws_instance" "my_ec2_database" {
       Project = "VPC"
     }
     subnet_id = aws_subnet.private_1.id
-    key_name = "Terraform-Server-Key"
+    key_name = var.key_name
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.my_sg.id]
    
