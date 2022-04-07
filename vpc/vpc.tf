@@ -7,6 +7,8 @@ resource "aws_vpc" "my_custom_vpc" {
     }
     cidr_block = var.cidr_block[0]
     instance_tenancy = "default"
+    enable_dns_support = true
+    enable_dns_hostnames = true 
 }
 
 resource "aws_internet_gateway" "internet-gw" {
