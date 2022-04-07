@@ -5,7 +5,7 @@ resource "aws_security_group" "my_sg" {
   }
 
 resource "aws_security_group_rule" "ingress" {
-    count = length(var.sg_ingress_rules)
+    count = length(var.sg_ingress_rules) #length will count how many string, number that I have in a list.
 
     type = var.tag_security_group_rule[0]
     from_port = var.sg_ingress_rules[count.index].from_port
