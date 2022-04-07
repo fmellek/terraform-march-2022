@@ -14,7 +14,7 @@ resource "aws_instance" "my_ec2" {
 
 }
 
-resource "aws_instance" "my_ec2" {
+resource "aws_instance" "my_ec2_database" {
     ami = data.aws_ami.amazon_linux_2.image_id
     instance_type = var.instance_type
     tags = {
