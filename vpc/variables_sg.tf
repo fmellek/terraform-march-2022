@@ -7,9 +7,9 @@ variable "sg_ingress_rules" {
 
 }
 variable "sg_inbound_rules_cidr" {
-    type = string
+    type = list(string)
     description = "This variable represent list of CIDR ranges for inbound rules"
-    default = "0.0.0.0/0" 
+    default = [ "0.0.0.0/0", "0.0.0.0/0" ]
   
 }
 
