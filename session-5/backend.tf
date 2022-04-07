@@ -11,3 +11,4 @@ terraform {
 # You cannot pass or use any variables for Backend Configuration.
 # backend.tf, providers.tf, versions.tf are must. 
 # We use Terraform Lock. Whoever runs the terraform apply first Terraform lock that apply process till the execution done. We use DynamoDB table to lock. 
+# terraform init -reconfigure is configuring your infrastructure. 

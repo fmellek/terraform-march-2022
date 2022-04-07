@@ -1,4 +1,5 @@
 resource "aws_instance" "my_ec2" {        # if you're using "_" always use "_" 
+  count = 3
   ami           =  data.aws_ami.amazon_linux_2.image_id # String, Hard Coded Value # var = variable, variable name
   instance_type = var.instance_type
   tags = {
@@ -12,3 +13,4 @@ resource "aws_instance" "my_ec2" {        # if you're using "_" always use "_"
 # Name = dev-app-instance, qa-app-instance, prod-app-instance
 # ${} was supported with every single reference befor Terraform Version 0.12
 # They got rid of ${} after 0.12
+# count = 3 is meta argument. Some resources support this arguments, some resources doesn't.
