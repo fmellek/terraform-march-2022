@@ -142,7 +142,7 @@ resource "aws_route_table_association" "third_private" {
  resource "aws_route" "ingress_route_nat_gateway" {
     route_table_id = aws_route_table.private_route_table.id
     destination_cidr_block = var.destination_cidr_public
-    gateway_id = aws_nat_gateway.nat_gateway.id
+    
     nat_gateway_id = aws_nat_gateway.nat_gateway.id
 
   }
