@@ -1,15 +1,20 @@
 resource "aws_vpc" "my_custom_vpc" {
     tags = {
-        Name = var.tag
+        Name = "my_custom_vpc"
+        ENV = "dev"
+        Project = "VPC"
+
     }
     cidr_block = var.cidr_block[0]
-    instance_tenancy = var.tenancy
+    instance_tenancy = "default"
 }
 
 resource "aws_internet_gateway" "internet-gw" {
     vpc_id = aws_vpc.my_custom_vpc.id
     tags = {
-        Name = var.igw-tag 
+        Name = "internet_gw"
+        ENV = "dev"
+        Project = "VPC"
     }
 }
 
@@ -127,7 +132,9 @@ resource "aws_route_table_association" "third_private" {
    allocation_id = aws_eip.nat.id
    subnet_id = aws_subnet.public_1.id
    tags = {
-     Name = var.tagging_nat_gateway
+     Name = "nat_gateway"
+     ENV = "dev"
+     Project = "VPC"
    }
    
  }
