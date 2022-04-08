@@ -1,10 +1,11 @@
 resource "aws_vpc" "my_custom_vpc" {
-    tags = {
+    tags = merge(
+      var.tags,
+       {
         Name = "my_custom_vpc"
-        ENV = "dev"
-        Project = "VPC"
 
     }
+    )
     cidr_block = var.cidr_block[0]
     instance_tenancy = "default"
     enable_dns_support = true
@@ -13,39 +14,45 @@ resource "aws_vpc" "my_custom_vpc" {
 
 resource "aws_internet_gateway" "internet-gw" {
     vpc_id = aws_vpc.my_custom_vpc.id
-    tags = {
+    tags = merge( 
+      var.tags, 
+      {
         Name = "internet_gw"
-        ENV = "dev"
-        Project = "VPC"
+       
     }
+    )
 }
 
-resource "aws_subnet" "public_1" {
+resource "aws_subnet" "public_subnet" {
+  count = length(var.az_name)
     vpc_id = aws_vpc.my_custom_vpc.id
-    availability_zone = var.az_name[0]
-    cidr_block = var.cidr_block[1]
-    tags = {
-      Name = var.tagging_subnets_public[0]
+    availability_zone = element(var.az_name, count.index)
+    cidr_block = element(var.public_cidr_subnet, count.index)
+    tags = merge(
+      var.tags,
+      {
+      Name = "public_subnet_${count.index}"
     }
+    )
 }
 
-resource "aws_subnet" "public_2" {
+resource "aws_subnet" "private_subnet" {
+  count = length(var.az_name)
     vpc_id = aws_vpc.my_custom_vpc.id
-    availability_zone = var.az_name[1]
-    cidr_block = var.cidr_block[2]
-    tags = {
-      Name = var.tagging_subnets_public[1]
+    availability_zone = element(var.az_name, count.index)
+    cidr_block = element(var.private_cidr_subnet, count.index)
+    tags = merge(
+      var.tags,
+      {
+      Name = "private_subnet_${count.index}"
     }
+    )
 }
 
-resource "aws_subnet" "public_3" {
-    vpc_id = aws_vpc.my_custom_vpc.id
-    availability_zone = var.az_name[2]
-    cidr_block = var.cidr_block[3]
-    tags = {
-      Name = var.tagging_subnets_public[2]
-    }
-}
+
+
+
+
 
 resource "aws_route_table" "public_route_table" {
     vpc_id = aws_vpc.my_custom_vpc.id
