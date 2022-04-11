@@ -12,6 +12,21 @@ resource "aws_vpc" "my_custom_vpc" {
     enable_dns_hostnames = true 
 }
 
+resource "aws_vpc" "my_custom_vpc_california" {
+    tags = merge(
+      var.tags,
+       {
+        Name = "my_custom_vpc_california"
+
+    }
+    )
+    provider = aws.us-west-1
+    cidr_block = var.vpc_cidr_block
+    instance_tenancy = "default"
+    enable_dns_support = true
+    enable_dns_hostnames = true 
+}
+
 resource "aws_internet_gateway" "internet-gw" {
     vpc_id = aws_vpc.my_custom_vpc.id
     tags = merge( 
