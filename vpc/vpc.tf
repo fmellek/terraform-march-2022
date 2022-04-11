@@ -6,7 +6,7 @@ resource "aws_vpc" "my_custom_vpc" {
 
     }
     )
-    cidr_block = var.cidr_block[0]
+    cidr_block = var.vpc_cidr_block
     instance_tenancy = "default"
     enable_dns_support = true
     enable_dns_hostnames = true 
@@ -56,24 +56,18 @@ resource "aws_subnet" "private_subnet" {
 
 resource "aws_route_table" "public_route_table" {
     vpc_id = aws_vpc.my_custom_vpc.id
-    tags = {
-      Name = var.tagging_route_table[0]
+    tags = merge(
+      var.tags,{ 
+      Name = "public_route_table"
     }
+    )
 }
 
-resource "aws_route_table_association" "first" {
-    subnet_id = aws_subnet.public_1.id
-    route_table_id = aws_route_table.public_route_table.id
-}
-
-resource "aws_route_table_association" "second" {
-    subnet_id = aws_subnet.public_2.id
-    route_table_id = aws_route_table.public_route_table.id
-}
-
-resource "aws_route_table_association" "third" {
-    subnet_id = aws_subnet.public_3.id
-    route_table_id = aws_route_table.public_route_table.id
+resource "aws_route_table_association" "public" {
+  count = length(var.az_name)
+  subnet_id = element(aws_subnet.public_subnet.*.id, count.index)
+  route_table_id = element(aws_route_table.public_route_table.*.id, count.index)
+  
 }
 
 resource "aws_route" "ingress_route" {
@@ -85,53 +79,25 @@ resource "aws_route" "ingress_route" {
 
   resource "aws_route_table" "private_route_table" {
     vpc_id = aws_vpc.my_custom_vpc.id
-    tags = {
-      Name = var.tagging_route_table[1]
+    tags = merge(
+      var.tags,{
+      Name = "private_route_table"
     }
-}
-
-resource "aws_subnet" "private_1" {
-    vpc_id = aws_vpc.my_custom_vpc.id
-    availability_zone = var.az_name[0]
-    cidr_block = var.cidr_block[4]
-    tags = {
-      Name = var.tagging_subnets_private[0]
-    }
-}
-
-resource "aws_subnet" "private_2" {
-    vpc_id = aws_vpc.my_custom_vpc.id
-    availability_zone = var.az_name[1]
-    cidr_block = var.cidr_block[5]
-    tags = {
-      Name = var.tagging_subnets_private[1]
-    }
-}
-
-resource "aws_subnet" "private_3" {
-    vpc_id = aws_vpc.my_custom_vpc.id
-    availability_zone = var.az_name[2]
-    cidr_block = var.cidr_block[6]
-    tags = {
-      Name = var.tagging_subnets_private[2]
-    }
+    )
 }
 
 
-resource "aws_route_table_association" "first_private" {
-    subnet_id = aws_subnet.private_1.id
-    route_table_id = aws_route_table.private_route_table.id
-  }
 
-resource "aws_route_table_association" "second_private" {
-    subnet_id = aws_subnet.private_2.id
-    route_table_id = aws_route_table.private_route_table.id
-  }
 
-resource "aws_route_table_association" "third_private" {
-    subnet_id = aws_subnet.private_3.id
-    route_table_id = aws_route_table.private_route_table.id
-  }
+
+
+
+
+resource "aws_route_table_association" "private" {
+  count = length(var.az_name)
+  subnet_id = element(aws_subnet.private_subnet.*.id, count.index)
+  route_table_id = element(aws_route_table.private_route_table.*.id, count.index)
+}
 
  resource "aws_eip" "nat" {
      depends_on = [aws_internet_gateway.internet-gw]
