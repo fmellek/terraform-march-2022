@@ -42,7 +42,7 @@ resource "aws_internet_gateway" "internet-gw" {
 resource "aws_internet_gateway" "internet-gw_california" {
     vpc_id = aws_vpc.my_custom_vpc_california.id
     provider = aws.us-west-1
-    provider = aws.us-west-1
+   
     tags = merge( 
       var.tags, 
       {
@@ -217,6 +217,7 @@ resource "aws_route_table_association" "private_california" {
      ENV = "dev"
      Project = "VPC"
    }
+ }
    
     resource "aws_nat_gateway" "nat_gateway_california" {
       provider = aws.us-west-1
