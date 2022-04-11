@@ -105,7 +105,7 @@ resource "aws_route_table_association" "private" {
 
  resource "aws_nat_gateway" "nat_gateway" {
    allocation_id = aws_eip.nat.id
-   subnet_id = aws_subnet.public_1.id
+   subnet_id = aws_subnet.public_subnet[0].id
    tags = {
      Name = "nat_gateway"
      ENV = "dev"

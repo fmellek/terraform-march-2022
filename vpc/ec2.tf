@@ -6,7 +6,7 @@ resource "aws_instance" "my_ec2" {
       ENV = "dev"
       Project = "VPC"
     }
-    subnet_id = aws_subnet.public_1.id
+    subnet_id = aws_subnet.public_subnet[0].id
     key_name = var.key_name
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.my_sg.id]
@@ -22,7 +22,7 @@ resource "aws_instance" "my_ec2_database" {
       ENV = "dev"
       Project = "VPC"
     }
-    subnet_id = aws_subnet.private_1.id
+    subnet_id = aws_subnet.private_subnet[0].id
     key_name = var.key_name
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.my_sg.id]
