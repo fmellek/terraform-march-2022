@@ -38,6 +38,18 @@ resource "aws_internet_gateway" "internet-gw" {
     )
 }
 
+resource "aws_internet_gateway" "internet-gw_california" {
+    vpc_id = aws_vpc.my_custom_vpc_california.id
+    provider = aws.us-west-1
+    tags = merge( 
+      var.tags, 
+      {
+        Name = "internet_gw_california"
+       
+    }
+    )
+}
+
 resource "aws_subnet" "public_subnet" {
   count = length(var.az_name)
     vpc_id = aws_vpc.my_custom_vpc.id
