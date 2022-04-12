@@ -3,3 +3,8 @@ output "db_password" {
     sensitive = true
   
 }
+
+output "db_user" {
+    value = aws_db_instance.wordpress.username
+  
+}
