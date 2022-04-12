@@ -20,3 +20,14 @@ output "username" {
     value = data.terraform_remote_state.backend.outputs.db_user
   
 }
+
+# locals {
+#    name = "aws-${var.stage}-${var.region}-${var.env}-${var.project}-rtype"
+# common_tags = {
+#    ENV = var.env
+ #   PROJECT = var.project
+  #  TEAM = "CLOUD"
+   # OWNER = "FME"
+    #Managed_by= "Terraform"}
+# }
+
