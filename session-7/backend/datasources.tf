@@ -15,3 +15,8 @@ output "password" {
     value = data.terraform_remote_state.backend.outputs.db_password
   
 } # output from the output
+
+output "username" {
+    value = data.terraform_remote_state.backend.outputs.db_user
+  
+}
