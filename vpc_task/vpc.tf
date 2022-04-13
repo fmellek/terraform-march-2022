@@ -87,3 +87,17 @@ resource "aws_route_table" "public_rtb" {
   
 }
 
+resource "aws_route_table" "private_rtb" {
+    vpc_id = aws_vpc.my_vpc_east.id
+    route {
+        cidr_block = var.rt_cidr_block
+        nat_gateway_id = aws_nat_gateway.nat_gw.id
+    }
+    tags = merge(
+        local.common_tags,
+        {
+            Name = "private_route_table"
+        }
+    )
+  
+}
