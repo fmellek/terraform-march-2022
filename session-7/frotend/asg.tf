@@ -1,9 +1,9 @@
 resource "aws_lb_target_group" "target_group" {
-    tags = merge(
-        local.common_tags,{
-            name = replace(local.name, "rtype", "lb_tg")
-        }
-    )
+    tags = {
+            Name = local.common_tags
+             }
+    
+    name = replace(local.name, "rtype", "lb_tg")
     target_type = "ip"
     protocol = "HTTP"
     port = 80
