@@ -37,4 +37,8 @@ variable "stage" {
             default = "sg-0b871eb3755c686db"
           
         }
-        
+        variable "vpc_id" {
+            type = string
+            default = "vpc-0b2a4bcf55ca8a7e1"
+          
+        }
