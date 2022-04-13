@@ -1,5 +1,16 @@
 
-
+variable "env" {
+    type = string
+    description = "This variable represent the common tag for our task."
+    default = "environment"
+  
+}
+variable "project" {
+    type = string
+    description = "This variable represent the common tag for our task."
+    default = "VPC"
+  
+}
 
 variable "vpc_cidr_block" {
     type = string
