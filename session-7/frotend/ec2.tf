@@ -8,7 +8,7 @@ resource "aws_instance" "instance_1" {
     )
     key_name = var.key_name
     associate_public_ip_address = true 
-    vpc_security_group_ids = var.security_group_id
+    vpc_security_group_ids = [var.security_group_id]
 
   
 }
@@ -23,7 +23,7 @@ resource "aws_instance" "instance_2" {
     )
     key_name = var.key_name
     associate_public_ip_address = true 
-    vpc_security_group_ids = var.security_group_id
+    vpc_security_group_ids = [var.security_group_id]
     
   
 }
@@ -38,7 +38,7 @@ resource "aws_instance" "instance_3" {
     )
     key_name = var.key_name
     associate_public_ip_address = true 
-    vpc_security_group_ids = var.security_group_id
+    vpc_security_group_ids = [var.security_group_id]
     
   
 }
