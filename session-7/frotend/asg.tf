@@ -10,6 +10,7 @@ resource "aws_lb_target_group" "target_group" {
 }
 
 resource "aws_lb" "application_lb" {
+    count = length(var.subnet_ids)
     load_balancer_type = "application"
     name = replace(local.name, "rtype", "application-lb")
     internal = false 
