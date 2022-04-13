@@ -16,6 +16,6 @@ resource "aws_lb" "application_lb" {
     internal = false 
     ip_address_type = "ipv4"
     subnets = var.subnet_ids
-    vpc_security_group_ids = [var.security_group_id]
+    security_groups = [var.security_group_id]
   
 }
