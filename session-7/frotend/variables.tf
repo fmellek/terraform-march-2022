@@ -42,3 +42,9 @@ variable "stage" {
             default = "vpc-0b2a4bcf55ca8a7e1"
           
         }
+
+        variable "subnet_ids" {
+            type = list(string)
+            default = [ "subnet-06a4f10a1c7be181a" , "subnet-07594d3003f12c21d" ]
+          
+        }
