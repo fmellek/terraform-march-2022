@@ -44,7 +44,7 @@ variable "stage" {
         }
 
         variable "subnet_ids" {
-            type = list(string)
+            type = list
             default = [ "subnet-06a4f10a1c7be181a" , "subnet-07594d3003f12c21d" ]
           
         }
