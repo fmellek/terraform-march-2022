@@ -15,7 +15,7 @@ resource "aws_lb" "application_lb" {
     name = replace(local.name, "rtype", "application-lb")
     internal = false 
     ip_address_type = "ipv4"
-    subnets = [for subnet in element(var.subnet_ids, count.index) : subnet_id]
+    subnets = var.subnet_ids
     vpc_security_group_ids = [var.security_group_id]
   
 }
