@@ -14,8 +14,23 @@ resource "aws_instance" "my_ec2" {        # if you're using "_" always use "_"
   provisioner "file" {
     source = "/home/ec2-user/terraform-march-2022/session-8/index.html" # Where does your file exist? Your Terraform Server
     destination = "/tmp/index.html" # This is the remote server
-    
+
     connection {
+      type = "ssh"
+      user = "ec2-user"
+      host = self.public_ip
+      private_key = file("~/.ssh/id_rsa")       # Private key of my Terraform Server
+    }
+  
+  }
+  provisioner "remote-exec" {  # Even in the company, engineers do not run userdata, instead they run CloudInit
+  inline = [
+    "sudo yum install httpd -y",
+    "sudo systemctl start httpd",
+    "sudo systemctl enable httpd",
+    "sudo cp /tmp/index.html /var/www/html/index.html"
+  ]
+  connection {
       type = "ssh"
       user = "ec2-user"
       host = self.public_ip
