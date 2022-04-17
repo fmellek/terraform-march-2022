@@ -14,3 +14,8 @@ module "ec2" {
 #Root module is where you run the Terraform init, plan and apply commands directly
 
 #Child is module is where you declare your resources
+
+module "s3" { #You can call as many local remote module as you want. 
+  source = "../../modules/s3"
+  env = "qa"
+}
