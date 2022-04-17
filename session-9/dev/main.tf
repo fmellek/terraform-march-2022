@@ -7,6 +7,7 @@ module "ec2" {
     instance_type = "t2.micro"
     env = "dev"
     project = "app-1"
+    s3_bucket_name = module.s3.s3_bucket_name
 }
 
 #Local and Remote means the way you are calling or sourcing  the modules
@@ -19,3 +20,5 @@ module "s3" { #You can call as many local remote module as you want.
   source = "../../modules/s3"
   env = "dev"
 }
+
+# Whenever you reference to module it reference to output directly.
