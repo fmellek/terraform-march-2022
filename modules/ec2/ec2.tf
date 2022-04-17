@@ -5,5 +5,6 @@ resource "aws_instance" "main" {
         Name = "${var.env}-instance"
         Environment = var.env
         Project = var.project
+        Bucket_name = var.s3_bucket_name
     }
 }
