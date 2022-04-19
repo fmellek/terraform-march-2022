@@ -34,3 +34,5 @@ module "s3" {
 # main =  default branch
 # modules = subdirectory
 # s3 = subdirectory
+
+# If you don't have any release it's gonna go pick up the latest. 
