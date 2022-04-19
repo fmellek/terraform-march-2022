@@ -7,4 +7,5 @@ resource "aws_instance" "main" {
         Project = var.project
         
     }
+    vpc_security_group_ids = var.security_group_ids
 }
