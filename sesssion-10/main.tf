@@ -32,6 +32,23 @@ module "ec2" {
     instance_type = "t2.micro"
     project = "application"
 }
+module "sg" {
+    source = "github.com/fmellek/terraform-march-2022//modules/ec2"
+    env = "dev"
+    ports = [{
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    },
+    {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }]
+  
+}
 
 # ?ref=v1.0.0 is a way to reference to the releases and tags
 
