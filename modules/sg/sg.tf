@@ -5,7 +5,7 @@ resource "aws_security_group" "main" {
     # Dynamic Block was implemented Terraform Version 0.12 
     dynamic "ingress" {   # Instead of using element function you can go head and use dynamic block.
         for_each = var.ports
-        content = {
+        content {
             from_port = ingress.value.from_port
             to_port =  ingress.value.to_port
             protocol = ingress.value.cidr_blocks
