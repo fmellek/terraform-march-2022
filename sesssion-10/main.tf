@@ -33,7 +33,7 @@ module "ec2" {
     project = "application"
 }
 module "sg" {
-    source = "github.com/fmellek/terraform-march-2022//modules/ec2"
+    source = "github.com/fmellek/terraform-march-2022//modules/sg"
     env = "dev"
     ports = [{
         from_port = 22
