@@ -25,6 +25,14 @@ module "s3" {
     env = "dev-fme"
 }
 
+module "ec2" {
+    source = "https://github.com/fmellek/terraform-march-2022//modules/ec2?ref=v1.0.0"
+    env = "dev"
+    ami = "ami-04a50faf2a2ec1901"
+    instance_type = "t2.micro"
+    project = "application"
+}
+
 # ?ref=v1.0.0 is a way to reference to the releases and tags
 
 # github.com = domain name
