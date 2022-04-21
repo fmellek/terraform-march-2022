@@ -1,6 +1,10 @@
 resource "aws_sqs_queue" "main" {
-    name = "${terraform.workspace}-sqs"
+    name = "${var.env}-sqs"
 
   
 }
+variable "env" {
+    type = string
 
+  
+}
