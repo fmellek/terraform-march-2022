@@ -4,6 +4,7 @@ terraform {
         key = "terraform.tfstate"
         region = "us-west-1"
         dynamodb_table= "terraform-march-2022-lock"
-        workspace_key_prefix = "session-11" # This is a prefix path
+        workspace_key_prefix = "session-11" # This is a prefix path; if you're using default workspace this argument will do nothing.
+
     }
 }
